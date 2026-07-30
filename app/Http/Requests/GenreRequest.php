@@ -29,9 +29,10 @@ class GenreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'ジャンル名を入力してください。',
-            'name.max' => 'ジャンル名は255文字以内で入力してください。',
-            'name.unique' => 'このジャンル名は既に使用されています。',
+            'name.required' => 'ジャンル名は必須です。',
+            'name.max'      => 'ジャンル名は255文字以内で入力してください。',
+            'name.string'   => 'ジャンル名は文字列で入力してください。',
+            'name.unique'   => 'そのジャンル名は既に使用されています。',
         ];
     }
 }

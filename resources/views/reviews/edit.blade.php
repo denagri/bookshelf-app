@@ -19,11 +19,15 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-2">評価 <span class="text-red-500">*</span></label>
-                            <div class="flex gap-2">
+                            <div class="flex gap-2" translate="no" class="notranslate">
                                 @for($i = 1; $i <= 5; $i++)
-                                    <label class="cursor-pointer">
-                                        <input type="radio" name="rating" value="{{ $i }}" class="sr-only peer" {{ old('rating', $review->rating) == $i ? 'checked' : '' }} required>
-                                        <span class="text-2xl peer-checked:text-yellow-400 text-gray-300 hover:text-yellow-400">★</span>
+                                    <label class="cursor-pointer relative">
+                                        <input type="radio" name="rating" value="{{ $i }}"
+                                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer rating-input"
+                                                {{ old('rating', $review->rating) == $i ? 'checked' : '' }}
+                                                required
+                                                onchange="updateStars(this.value)">
+                                        <span class="text-2xl star-icon transition-colors duration-150 {{ old('rating', $review->rating) >= $i ? 'text-yellow-400' : 'text-gray-300' }}">★</span>
                                     </label>
                                 @endfor
                             </div>
@@ -31,6 +35,22 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+
+<script>
+function updateStars(selectedValue) {
+    const stars = document.querySelectorAll('.star-icon');
+    stars.forEach((star, index) => {
+        if (index < selectedValue) {
+            star.classList.remove('text-gray-300');
+            star.classList.add('text-yellow-400');
+        } else {
+            star.classList.remove('text-yellow-400');
+            star.classList.add('text-gray-300');
+        }
+    });
+}
+</script>
+
 
                         <div class="mb-4">
                             <label for="comment" class="block text-sm font-medium text-gray-700 mb-2">コメント</label>
