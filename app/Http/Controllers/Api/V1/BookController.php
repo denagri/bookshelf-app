@@ -14,7 +14,6 @@ class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 書籍一覧を取得（複数形の genres に修正済み）
      */
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -47,10 +46,11 @@ class BookController extends Controller
      */
     public function store(BookRequest $request): JsonResponse
     {
-        $book = Book::create($request->validated());
-        if ($request->has('genre_ids')) {
-        $book->genres()->sync($request->input('genre_ids'));
-        }
+        $data = array_merge($request->validated(), [
+            'user_id' => auth()->id(),
+        ]);
+
+        $book = Book::create($data);
 
         return response()->json([
             'id'           => $book->id,

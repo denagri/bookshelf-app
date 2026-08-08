@@ -16,11 +16,12 @@ class BookRequest extends FormRequest
         $isPost = $this->isMethod('post');
 
         return [
-            'title'        => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
-            'author'       => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
-            'genre_id'     => [$isPost ? 'required' : 'sometimes', 'exists:genres,id'],
-            'description'  => ['nullable', 'string'],
-            'published_at' => ['nullable', 'date_format:Y-m-d'],
+            'title'          => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
+            'author'         => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
+            'genre_id'       => [$isPost ? 'required' : 'sometimes', 'exists:genres,id'],
+            'isbn'           => [$isPost ? 'required' : 'sometimes', 'string', 'max:255'],
+            'published_date' => [$isPost ? 'required' : 'sometimes', 'date_format:Y-m-d'],
+            'description'    => ['nullable', 'string'],
         ];
     }
 }
