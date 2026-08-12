@@ -14,6 +14,10 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request, Book $book)
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+
         $validated = $request->validated();
         $book->reviews()->create([
             'user_id' => auth()->id(),
@@ -25,23 +29,24 @@ class ReviewController extends Controller
     }
 
     /**
-     * 自分のレビューの編集画面表示
+     * 自分のレビューの編集画面表示（GET /reviews/{review}/edit）
      */
     public function edit(Review $review)
     {
-        if (auth()->id() !== $review->user_id) {
+        if (!auth()->check() || auth()->id() !== $review->user_id) {
             abort(403);
         }
 
         return view('reviews.edit', compact('review'));
     }
 
-        /**
+
+    /**
      * レビューの編集処理
      */
     public function update(ReviewRequest $request, Review $review)
     {
-        if (auth()->id() !== $review->user_id) {
+        if (!auth()->check() || auth()->id() !== $review->user_id) {
             abort(403);
         }
 
@@ -58,7 +63,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        if (auth()->id() !== $review->user_id) {
+        if (!auth()->check() || auth()->id() !== $review->user_id) {
             abort(403);
         }
         $review->likedByUsers()->detach();
@@ -72,6 +77,10 @@ class ReviewController extends Controller
      */
     public function like(Review $review)
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
+
         auth()->user()->likedReviews()->toggle($review->id);
 
         return back()->with('success', 'いいねの状態を更新しました。');
