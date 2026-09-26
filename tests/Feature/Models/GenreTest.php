@@ -13,7 +13,6 @@ class GenreTest extends TestCase
 
     /**
      * @test
-     * 観点: 基本属性（fillable）が正しく保存できるか
      */
     public function test_ジャンルモデルの基本属性が正しく保存できること()
     {
@@ -29,7 +28,6 @@ class GenreTest extends TestCase
 
     /**
      * @test
-     * 観点: booksリレーション（多対多）およびタイムスタンプの保持
      */
     public function test_books_リレーション経由で属する書籍を取得できること()
     {

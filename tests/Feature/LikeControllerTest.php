@@ -15,9 +15,6 @@ class LikeControllerTest extends TestCase
     private User $user;
     private Review $review;
 
-    /**
-     * テスト前の初期化（ユーザーといいね対象のレビューを準備）
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -32,7 +29,6 @@ class LikeControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: レビューに対するいいねの登録と解除（トグル処理）
      */
     public function test_レビューに対していいねの登録および解除ができること(): void
     {

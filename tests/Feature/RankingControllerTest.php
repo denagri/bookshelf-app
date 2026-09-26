@@ -12,9 +12,6 @@ class RankingControllerTest extends TestCase
 
     private User $user;
 
-    /**
-     * テスト前の初期化（ユーザーを準備）
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,7 +20,6 @@ class RankingControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: ランキング画面の表示
      */
     public function test_ランキング画面にアクセスできること(): void
     {

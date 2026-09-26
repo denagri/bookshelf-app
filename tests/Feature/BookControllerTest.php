@@ -15,9 +15,6 @@ class BookControllerTest extends TestCase
 
     private User $user;
 
-    /**
-     * 各テストメソッド実行前の初期化処理
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,7 +24,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: C（作成画面へのアクセス確認）
      */
     public function test_書籍登録画面にアクセスできること(): void
     {
@@ -39,7 +35,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: C（フォームから送られたデータとジャンルIDの保存処理）
      */
     public function test_書籍を新規登録でき一覧画面へリダイレクトされること(): void
     {
@@ -74,7 +69,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: R（一覧画面の表示確認）
      */
     public function test_書籍一覧画面に登録済みの書籍が表示されること(): void
     {
@@ -94,7 +88,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: R（詳細画面における関連データのBlade表示確認）
      */
     public function test_書籍詳細画面で書籍情報と紐付くジャンルやレビューが表示されること(): void
     {
@@ -119,7 +112,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: U（編集画面へのアクセス確認）
      */
     public function test_書籍編集画面にアクセスできること(): void
     {
@@ -131,9 +123,8 @@ class BookControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-        /**
+    /**
      * @test
-     * 観点: U（データの更新処理確認）
      */
     public function test_書籍データを更新でき詳細画面へリダイレクトされること(): void
     {
@@ -169,7 +160,6 @@ class BookControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: D（レコードの削除処理確認）
      */
     public function test_書籍データを削除でき一覧画面へリダイレクトされること(): void
     {
