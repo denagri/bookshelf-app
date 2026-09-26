@@ -184,9 +184,10 @@ sail artisan migrate --seed
 
 ---
 
-##  データベース設計 (ER図)
+## データベース設計 (ER図)
 
-c:\Users\hiroy\OneDrive\画像\スクリーンショット\スクリーンショット 2026-09-18 200048.png
+![ER図](docs/er.png)
+
 
 ---
 
