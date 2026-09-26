@@ -12,9 +12,7 @@ class Genre extends Model
     protected $fillable = [
         'name',
     ];
-    /**
-     * このジャンルに属する書籍一覧（多対多）
-     */
+    
     public function books()
     {
         return $this->belongsToMany(Book::class, 'book_genre')->withTimestamps();

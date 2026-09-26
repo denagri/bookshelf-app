@@ -18,9 +18,6 @@ class GenreController extends Controller
         return view('genres.create');
     }
 
-    /**
-     * ジャンル登録の保存処理
-     */
     public function store(GenreRequest $request)
     {
         Genre::create([
@@ -29,7 +26,7 @@ class GenreController extends Controller
 
         return redirect()
             ->route('genres.index')
-            ->with('success', 'ジャンルを作成しました。'); // メッセージを変更
+            ->with('success', 'ジャンルを作成しました。');
     }
 
 
@@ -44,9 +41,6 @@ class GenreController extends Controller
         return view('genres.edit', compact('genre'));
     }
 
-    /**
-     * ジャンル編集の更新処理
-     */
     public function update(GenreRequest $request, Genre $genre)
     {
         $genre->update($request->validated());

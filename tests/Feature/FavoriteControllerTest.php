@@ -14,9 +14,6 @@ class FavoriteControllerTest extends TestCase
     private User $user;
     private Book $book;
 
-    /**
-     * テスト前の初期化（ユーザーと書籍を準備）
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -26,7 +23,6 @@ class FavoriteControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: お気に入り一覧画面の表示
      */
     public function test_お気に入り一覧画面にアクセスできること(): void
     {
@@ -38,7 +34,6 @@ class FavoriteControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: お気に入り登録と解除のトグル処理（Toggle）
      */
     public function test_書籍をお気に入り登録および解除できること(): void
     {

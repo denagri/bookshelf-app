@@ -13,9 +13,6 @@ class GenreControllerTest extends TestCase
 
     private User $user;
 
-    /**
-     * テスト前の初期化（ログイン用のユーザーを準備）
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -24,7 +21,6 @@ class GenreControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: ジャンル一覧画面の表示（Read）
      */
     public function test_ジャンル一覧画面に作成済みのジャンルが表示されること(): void
     {
@@ -39,7 +35,6 @@ class GenreControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: ジャンルの登録処理（Create）
      */
     public function test_新しいジャンルを登録でき一覧画面へリダイレクトされること(): void
     {
@@ -57,7 +52,6 @@ class GenreControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: ジャンルの更新処理（Update）
      */
     public function test_ジャンル名を更新でき一覧画面へリダイレクトされること(): void
     {
@@ -77,7 +71,6 @@ class GenreControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: ジャンルの削除処理（Delete）
      */
     public function test_ジャンルを削除でき一覧画面へリダイレクトされること(): void
     {

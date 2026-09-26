@@ -15,7 +15,6 @@ class BookTest extends TestCase
 
     /**
      * @test
-     * 観点: 基本属性（fillable）が仕様通り正しくデータベースに保存できるか
      */
     public function test_書籍モデルの基本属性が正しく保存できること()
     {
@@ -39,14 +38,14 @@ class BookTest extends TestCase
         ]);
 
         $this->assertEquals('テスト著者名', $book->author);
-        $this->assertEquals('2026-08-14', $book->published_date);
+        $publishedDateStr = is_string($book->published_date) ? $book->published_date : $book->published_date->format('Y-m-d');
+        $this->assertEquals('2026-08-14', $publishedDateStr);    
         $this->assertEquals('これはテスト用の書籍説明文です。', $book->description);
         $this->assertEquals('https://example.com', $book->image_url);
     }
 
     /**
      * @test
-     * 観点: userリレーション（多対1）
      */
     public function test_user_リレーション経由で登録したユーザーを取得できること()
     {
@@ -59,15 +58,12 @@ class BookTest extends TestCase
 
     /**
      * @test
-     * 観点: genresリレーション（多対多）およびタイムスタンプの保持
      */
     public function test_genres_リレーション経由でジャンルを登録・取得できること()
     {
         $book = Book::factory()->create();
         $genre = Genre::factory()->create();
-
         $book->genres()->attach($genre->id);
-
         $this->assertCount(1, $book->genres);
         $this->assertTrue($book->genres->contains($genre));
         $this->assertNotNull($book->genres->first()->pivot->created_at);
@@ -75,12 +71,10 @@ class BookTest extends TestCase
 
     /**
      * @test
-     * 観点: reviewsリレーション（1対多）
      */
     public function test_reviews_リレーション経由で書籍に投稿されたレビューを取得できること()
     {
         $book = Book::factory()->create();
-
         $review = $book->reviews()->create([
             'user_id' => User::factory()->create()->id,
             'comment' => '素晴らしい本でした。',
@@ -93,7 +87,6 @@ class BookTest extends TestCase
 
     /**
      * @test
-     * 観点: favoritedByUsersリレーション（多対多）およびタイムスタンプの保持
      */
     public function test_favoritedByUsers_リレーション経由でお気に入り登録しているユーザーを取得できること()
     {

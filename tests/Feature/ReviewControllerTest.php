@@ -15,9 +15,6 @@ class ReviewControllerTest extends TestCase
     private User $user;
     private Book $book;
 
-    /**
-     * テスト前の初期化（ユーザーとレビュー対象の本を準備）
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -28,7 +25,6 @@ class ReviewControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: レビューの投稿処理（Create）
      */
     public function test_書籍に対してレビューを投稿でき書籍詳細画面へリダイレクトされること(): void
     {
@@ -52,7 +48,6 @@ class ReviewControllerTest extends TestCase
 
     /**
      * @test
-     * 観点: レビューの削除処理（Delete）
      */
     public function test_自分が投稿したレビューを削除できること(): void
     {

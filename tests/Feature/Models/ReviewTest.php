@@ -14,7 +14,6 @@ class ReviewTest extends TestCase
 
     /**
      * @test
-     * 観点: 基本属性（fillable）が仕様通り正しくデータベースに保存できるか
      */
     public function test_レビューモデルの基本属性が正しく保存できること()
     {
@@ -41,7 +40,6 @@ class ReviewTest extends TestCase
 
     /**
      * @test
-     * 観点: userリレーション（多対1）
      */
     public function test_user_リレーション経由でレビューを投稿したユーザーを取得できること()
     {
@@ -54,7 +52,6 @@ class ReviewTest extends TestCase
 
     /**
      * @test
-     * 観点: bookリレーション（多対1）
      */
     public function test_book_リレーション経由でレビュー対象の書籍を取得できること()
     {
@@ -67,7 +64,6 @@ class ReviewTest extends TestCase
 
     /**
      * @test
-     * 観点: likedByUsersリレーション（多対多）およびタイムスタンプの保持
      */
     public function test_likedByUsers_リレーション経由でレビューにいいねしたユーザーを取得できること()
     {

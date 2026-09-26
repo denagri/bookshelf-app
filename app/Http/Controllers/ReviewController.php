@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    /**
-     * レビューの投稿処理
-     */
+
     public function store(ReviewRequest $request, Book $book)
     {
         if (!auth()->check()) {
@@ -28,9 +26,6 @@ class ReviewController extends Controller
         return back()->with('success', 'レビューを投稿しました。');
     }
 
-    /**
-     * 自分のレビューの編集画面表示（GET /reviews/{review}/edit）
-     */
     public function edit(Review $review)
     {
         if (!auth()->check() || auth()->id() !== $review->user_id) {
@@ -41,9 +36,6 @@ class ReviewController extends Controller
     }
 
 
-    /**
-     * レビューの編集処理
-     */
     public function update(ReviewRequest $request, Review $review)
     {
         if (!auth()->check() || auth()->id() !== $review->user_id) {
@@ -58,9 +50,6 @@ class ReviewController extends Controller
             ->with('success', 'レビューを更新しました。');
     }
 
-    /**
-     * レビューの削除処理
-     */
     public function destroy(Review $review)
     {
         if (!auth()->check() || auth()->id() !== $review->user_id) {
@@ -72,9 +61,6 @@ class ReviewController extends Controller
         return back()->with('success', 'レビューを削除しました。');
     }
 
-    /**
-     * レビューのいいね・解除
-     */
     public function like(Review $review)
     {
         if (!auth()->check()) {
