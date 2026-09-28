@@ -13,11 +13,16 @@ class FavoriteSeeder extends Seeder
         $users = User::all();
         $books = Book::all();
 
+        if ($books->isEmpty()) {
+            return;
+        }
         foreach ($users as $user) {
-            $favoriteBooks = $books->shuffle()->take(rand(3, 5));
+            $takeCount = min($books->count(), rand(3, 5));
+            
+            $favoriteBooks = $books->shuffle()->take($takeCount);
             $bookIds = $favoriteBooks->pluck('id')->toArray();
 
-            $user->favorites()->syncWithoutDetaching($bookIds);
+            $user->favoriteBooks()->syncWithoutDetaching($bookIds);
         }
     }
 }
